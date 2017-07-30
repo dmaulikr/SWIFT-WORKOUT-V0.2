@@ -187,11 +187,19 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
         // Cell creation: image
-        //let image = UIImage(named: "pu")
-       // cell?.imageView?.image = image
+          let imageWin = UIImage(named: "002-interface")
+          let imageLoss = UIImage(named: "001-error")
+
+        // cell?.imageView?.image = image
         
      //   let highlightedImage = UIImage(named: "abs")
    //     cell?.imageView?.highlightedImage = highlightedImage
+        
+        
+        if(self.series[indexPath.row]>self.objectives[indexPath.row])
+        {
+        cell.imageObj.image = imageWin
+        }else{cell.imageObj.image=imageLoss}
         
         // Cell creation : text
         cell.serieValue.text=String(self.series[indexPath.row])

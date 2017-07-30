@@ -18,7 +18,10 @@ class customCell: UITableViewCell {
     
     @IBOutlet weak var serieNum: UILabel!
     
-    
+    @IBOutlet weak var imageObj: UIImageView!
+
+
+    @IBOutlet weak var imageStat: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
