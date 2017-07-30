@@ -140,7 +140,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     //--------------------  Properties: interface
-    let cellReuseIdentifier = "Cell"
+    let cellReuseIdentifier = "cellReuseIdentifier"
     
     //--------------------  Methods override
     override func viewDidLoad() {
@@ -148,7 +148,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         currentValue.text = String(Value)
         
-        self.TableSerie.register(UITableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
+        
+        let nib = UINib(nibName: "customCell", bundle: nil)
+        self.TableSerie.register(nib, forCellReuseIdentifier: "cellReuseIdentifier")
+     
+        
+      //  self.TableSerie.register(UITableViewCell.self, forCellReuseIdentifier: "cellReuseIdentifier")
         TableSerie.delegate = self
         TableSerie.dataSource = self
         
@@ -171,33 +176,34 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         // Cell identifier
-        let cellReuseIdentifier = "Cell"
+        let cellReuseIdentifier = "cellReuseIdentifier"
 
         // Cell instanciation
-        var cell = TableSerie.dequeueReusableCell(withIdentifier : cellReuseIdentifier)
+        var cell : customCell! = TableSerie.dequeueReusableCell(withIdentifier : cellReuseIdentifier) as? customCell
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.value1  ,reuseIdentifier: cellReuseIdentifier)
+            cell = customCell(style: .default  ,reuseIdentifier: cellReuseIdentifier)
         }
 
         // Cell creation: image
-        let image = UIImage(named: "pu")
-        cell?.imageView?.image = image
+        //let image = UIImage(named: "pu")
+       // cell?.imageView?.image = image
         
-        let highlightedImage = UIImage(named: "abs")
-        cell?.imageView?.highlightedImage = highlightedImage
+     //   let highlightedImage = UIImage(named: "abs")
+   //     cell?.imageView?.highlightedImage = highlightedImage
         
         // Cell creation : text
-        cell?.textLabel?.text=self.items[indexPath.row]
-        cell?.detailTextLabel?.text = String(self.series[indexPath.row])
-        cell?.textLabel?.textColor=UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
-        cell?.detailTextLabel?.textColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
+        cell.serieValue.text=self.items[indexPath.row]
+        cell.serieObj.text = String(self.series[indexPath.row])
+//        cell?.textLabel?.textColor=UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
+ //       cell?.detailTextLabel?.textColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
 
+        print(cell!.serieObj.text)
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:0.2)
-        cell?.selectedBackgroundView = backgroundView
+        cell!.selectedBackgroundView = backgroundView
         
         // Cell creation : style
-        cell?.backgroundColor = UIColor(white: 1, alpha: 0)
+        cell!.backgroundColor = UIColor(white: 1, alpha: 0)
         
 
         // Cell return
