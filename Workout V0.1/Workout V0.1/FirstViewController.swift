@@ -192,12 +192,14 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
    //     cell?.imageView?.highlightedImage = highlightedImage
         
         // Cell creation : text
-        cell.serieValue.text=self.items[indexPath.row]
-        cell.serieObj.text = String(self.series[indexPath.row])
+        cell.serieValue.text=String(self.series[indexPath.row])
+        cell.serieObj.text = String(self.objectives[indexPath.row])
+        cell.serieNum.text=self.items[indexPath.row]
+        cell.serieMean.text=String(self.series[indexPath.row]-1)
+        
 //        cell?.textLabel?.textColor=UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
  //       cell?.detailTextLabel?.textColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
 
-        print(cell!.serieObj.text)
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:0.2)
         cell!.selectedBackgroundView = backgroundView

@@ -11,7 +11,12 @@ import UIKit
 class customCell: UITableViewCell {
 
     @IBOutlet weak var serieValue: UILabel!
+  
     @IBOutlet weak var serieObj: UILabel!
+    
+    @IBOutlet weak var serieMean: UILabel!
+    
+    @IBOutlet weak var serieNum: UILabel!
     
     
     override func awakeFromNib() {
