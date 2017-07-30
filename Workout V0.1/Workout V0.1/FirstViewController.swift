@@ -26,7 +26,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //--------------------  Properties: model
 
     var currentRow : Int?
-    var items = ["serie 1 ","serie 2","serie 3","serie 4","serie 5"]
+    var items = ["1","2","3","4","5"]
     var series = [0,0,0,0,0]
     var objectives = [29,32,35,29,20]
     var Value : Int = 29
@@ -53,7 +53,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             
             // Update title
-            sender.setTitle("Finished and save", for:.normal)
+            sender.setTitle("FINISHED AND SAVE", for:.normal)
 
             
             //Series update
@@ -78,7 +78,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if(currentRow!<4){
             
-            sender.setTitle("Continue and rest", for:.normal)
+            sender.setTitle("CONTINUE AND REST", for:.normal)
 
             
         // Series update
@@ -162,6 +162,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         TableSerie.delegate?.tableView!(TableSerie, didSelectRowAt: indexPath)
         
         
+        self.TableSerie.rowHeight=60
+        
     }
     
 
@@ -201,7 +203,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
  //       cell?.detailTextLabel?.textColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:1.0)
 
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor(red:0.43, green:0.83, blue:0.81, alpha:0.2)
+        backgroundView.backgroundColor = UIColor(white: 1, alpha: 0.2)
         cell!.selectedBackgroundView = backgroundView
         
         // Cell creation : style
