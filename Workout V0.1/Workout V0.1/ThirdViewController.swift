@@ -14,7 +14,8 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
 @IBOutlet weak var tableAPI: UITableView!
     
     
-    let serieAPI = ["serie1","serie2"]
+    var serieAPI : [String] = ["Sting"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,17 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let content = data {
                     do {
                     let myjson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        
+                        
                     print(myjson)
+                        
+                        
+                        
+                     //   self.serieAPI!.append(String(myjson["serie1"]))
+                        self.serieAPI.append("serie1")
+                        print("append done")
+                        self.tableAPI.reloadData()
+
                     }
                     catch{}
                 
@@ -45,7 +56,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
         task.resume()
     }
     
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -64,11 +75,12 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return serieAPI.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell=tableAPI.dequeueReusableCell(withIdentifier: "cellAPI", for: indexPath)
+        print(serieAPI)
         cell.textLabel?.text=self.serieAPI[indexPath.row]
         
         return(cell)
