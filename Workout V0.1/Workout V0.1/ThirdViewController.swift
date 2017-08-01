@@ -8,14 +8,54 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController {
-
+class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+@IBOutlet weak var tableAPI: UITableView!
+    
+    
+    var serieAPI : [String] = ["Sting"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.tableAPI.register(UITableViewCell.self, forCellReuseIdentifier: "cellAPI")
+        tableAPI.delegate = self
+        tableAPI.dataSource = self
+        
         // Do any additional setup after loading the view.
-    }
+        
+        
+        let url = URL(string: "http://137.74.168.147/")
+        let task=URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil
+                {print("error")}
+            else{
+                if let content = data {
+                    do {
+                    let myjson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                        
+                        
+                    print(myjson)
+                        
+                     //   self.serieAPI!.append(String(myjson["serie1"]))
+                        self.serieAPI.append("serie1")
+                        print("append done")
+                        self.tableAPI.reloadData()
 
+                    }
+                    catch{}
+                
+                }
+            
+            }
+        }
+        task.resume()
+    }
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -31,5 +71,17 @@ class ThirdViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return serieAPI.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell=tableAPI.dequeueReusableCell(withIdentifier: "cellAPI", for: indexPath)
+        print(serieAPI)
+        cell.textLabel?.text=self.serieAPI[indexPath.row]
+        
+        return(cell)
+    }
 
 }
