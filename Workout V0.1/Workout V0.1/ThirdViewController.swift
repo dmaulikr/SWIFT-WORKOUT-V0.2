@@ -14,7 +14,7 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
 @IBOutlet weak var tableAPI: UITableView!
     
     
-    var serieAPI = [Int: String]()
+    var serieAPI = [Int: Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +33,18 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
             else{
                 if let content = data {
                     do {
-                    let myjson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject
+                    let myjson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject!
                         
                         
                         print(myjson)
-                        let serie = myjson as? NSDictionary
+                        let serie = myjson as! NSDictionary
                         
-                        self.serieAPI[0]=String(describing: serie?["serie1"]!)
-                        self.serieAPI[1]=String(describing: serie?["serie2"]!)
-                        self.serieAPI[2]=String(describing: serie?["serie3"]!)
+                        self.serieAPI[0] = (serie.value(forKey:"serie1") as! Int)
+                        self.serieAPI[1] = (serie.value(forKey:"serie2") as! Int)
+                        self.serieAPI[2] = (serie.value(forKey:"serie3") as! Int)
+                        self.serieAPI[3] = (serie.value(forKey:"serie4") as! Int)
+                        self.serieAPI[4] = (serie.value(forKey:"serie5") as! Int)
+                    
                         
                       //  print(serie)
                      //   self.serieAPI!.append(String(myjson["serie1"]))
@@ -82,10 +85,23 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell=tableAPI.dequeueReusableCell(withIdentifier: "cellAPI", for: indexPath)
-        cell.textLabel?.text=self.serieAPI[indexPath.row]
+        var cell = tableAPI.dequeueReusableCell(withIdentifier: "cellAPI", for: indexPath) as? UITableViewCell
         
-        return(cell)
+        if(cell == nil)
+        {
+            print("crée les cellsvide ")
+            cell = UITableViewCell(style : .default,reuseIdentifier: "cellAPI")
+        }else{
+            
+            
+             var output : Int = self.serieAPI[indexPath.row]!
+             var output2 = String(output)
+            print(output2)
+            cell!.textLabel!.text = output2
+        }
+        
+        
+        return(cell!)
     }
 
 }
