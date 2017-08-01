@@ -13,6 +13,7 @@ class CustomCeller: UITableViewCell {
     @IBOutlet weak var lab1: UILabel!
     @IBOutlet weak var lab2: UILabel!
     
+    @IBOutlet weak var serieCurrent: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
