@@ -214,19 +214,29 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oac-nV-ww6">
-                                <rect key="frame" x="36" y="40" width="303" height="558"/>
+                                <rect key="frame" x="36" y="40" width="303" height="252"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Wf-tq-f91">
+                                <rect key="frame" x="136.5" y="521" width="102" height="30"/>
+                                <state key="normal" title="Save on server"/>
+                                <connections>
+                                    <action selector="serverSend:" destination="h9h-4e-Tl3" eventType="touchUpInside" id="oxf-cB-v3f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Oac-nV-ww6" secondAttribute="trailing" constant="20" id="3Wm-7h-5pm"/>
+                            <constraint firstItem="Oac-nV-ww6" firstAttribute="leading" secondItem="IUz-sb-KOI" secondAttribute="leadingMargin" constant="20" id="7pB-l8-iYr"/>
                             <constraint firstItem="ICh-LC-tdS" firstAttribute="leading" secondItem="IUz-sb-KOI" secondAttribute="leading" id="ORR-Op-q23"/>
-                            <constraint firstItem="Oac-nV-ww6" firstAttribute="leading" secondItem="IUz-sb-KOI" secondAttribute="leadingMargin" constant="20" id="U18-Xn-Sdh"/>
-                            <constraint firstItem="fnF-AO-0C0" firstAttribute="top" secondItem="Oac-nV-ww6" secondAttribute="bottom" constant="20" id="WpM-sm-737"/>
+                            <constraint firstItem="Oac-nV-ww6" firstAttribute="centerX" secondItem="ICh-LC-tdS" secondAttribute="centerX" id="Qz8-iA-gEz"/>
+                            <constraint firstItem="7Wf-tq-f91" firstAttribute="centerX" secondItem="ICh-LC-tdS" secondAttribute="centerX" id="WDC-OV-0s2"/>
                             <constraint firstItem="fnF-AO-0C0" firstAttribute="top" secondItem="ICh-LC-tdS" secondAttribute="bottom" id="cby-J0-XeO"/>
-                            <constraint firstItem="Oac-nV-ww6" firstAttribute="top" secondItem="ayF-9i-djD" secondAttribute="bottom" constant="20" id="mlP-PO-Y5V"/>
+                            <constraint firstItem="7Wf-tq-f91" firstAttribute="top" secondItem="ICh-LC-tdS" secondAttribute="bottom" constant="-97" id="dtz-m2-lA6"/>
                             <constraint firstAttribute="trailing" secondItem="ICh-LC-tdS" secondAttribute="trailing" id="oqk-L6-iKj"/>
+                            <constraint firstItem="7Wf-tq-f91" firstAttribute="top" secondItem="Oac-nV-ww6" secondAttribute="bottom" constant="229" id="ssv-iv-UY4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Oac-nV-ww6" secondAttribute="trailing" constant="20" id="yas-f0-FOj"/>
+                            <constraint firstItem="Oac-nV-ww6" firstAttribute="top" secondItem="ayF-9i-djD" secondAttribute="bottom" constant="20" id="ynC-Ib-zc2"/>
                             <constraint firstItem="ICh-LC-tdS" firstAttribute="top" secondItem="IUz-sb-KOI" secondAttribute="top" id="zx4-pM-aSx"/>
                         </constraints>
                     </view>

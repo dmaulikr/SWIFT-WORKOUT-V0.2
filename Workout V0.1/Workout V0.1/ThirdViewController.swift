@@ -10,6 +10,12 @@ import UIKit
 
 class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBAction func serverSend(_ sender: UIButton) {
+        
+
+        fetchSendData() 
+        
+    }
     
 @IBOutlet weak var tableAPI: UITableView!
     private let refreshControl = UIRefreshControl()
@@ -17,6 +23,44 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     var serieAPI = [Int: Int]()
+
+    
+    func fetchSendData() {
+        let url = URL(string: "http://137.74.168.147/add?id=1&name=Jeff")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+       // let postString = "?id=1&name=Jeff"
+      //  request.httpBody = postString.data(using: .utf8)
+
+        print(request.httpBody)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil
+            {print("error")}
+            else{
+                if let content = data {
+                    do {
+                        let myjson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject!
+                        
+                        
+                        print(myjson)
+                        
+                        
+                        
+                        
+                    }
+                    catch{print("bug")}
+                    
+                }
+                
+            }}
+        task.resume()
+        
+        
+        
+        
+        refreshControl.endRefreshing()
+    }
+    
     
      func fetchWeatherData() {
         let url = URL(string: "http://137.74.168.147/")
