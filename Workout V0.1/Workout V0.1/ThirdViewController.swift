@@ -12,7 +12,10 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
 @IBOutlet weak var tableAPI: UITableView!
+    private let refreshControl = UIRefreshControl()
     
+    self.tableAPI.refreshControl = refreshControl
+
     
     var serieAPI = [Int: Int]()
     
@@ -50,10 +53,27 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
                      //   self.serieAPI!.append(String(myjson["serie1"]))
                    //     self.serieAPI.append(serie)
                         print("append done")
-                        self.tableAPI.reloadData()
+                        
+                        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+                        //Database save
+                        let DBseries=Series(context: context)
+                        DBseries.s1=Int16( self.serieAPI[0]!)
+                        DBseries.s2=Int16( self.serieAPI[1]!)
+                        DBseries.s3=Int16( self.serieAPI[2]!)
+                        DBseries.s4=Int16( self.serieAPI[3]!)
+                        DBseries.s5=Int16( self.serieAPI[4]!)
+                        DBseries.id=Int16(1)
+                        
+                        
+                        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                        
+                        DispatchQueue.main.async() {
+                            self.tableAPI.reloadData()
+                        }
 
                     }
-                    catch{}
+                    catch{print("bug")}
                 
                 }
             
