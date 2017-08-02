@@ -14,10 +14,67 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
 @IBOutlet weak var tableAPI: UITableView!
     private let refreshControl = UIRefreshControl()
     
-    self.tableAPI.refreshControl = refreshControl
 
     
     var serieAPI = [Int: Int]()
+    
+     func fetchWeatherData() {
+        let url = URL(string: "http://137.74.168.147/")
+        let task=URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil
+            {print("error")}
+            else{
+                if let content = data {
+                    do {
+                        let myjson = try JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers) as AnyObject!
+                        
+                        
+                        print(myjson)
+                        let serie = myjson as! NSDictionary
+                        
+                        self.serieAPI[0] = (serie.value(forKey:"serie1") as! Int)
+                        self.serieAPI[1] = (serie.value(forKey:"serie2") as! Int)
+                        self.serieAPI[2] = (serie.value(forKey:"serie3") as! Int)
+                        self.serieAPI[3] = (serie.value(forKey:"serie4") as! Int)
+                        self.serieAPI[4] = (serie.value(forKey:"serie5") as! Int)
+                        
+                        
+                        //  print(serie)
+                        //   self.serieAPI!.append(String(myjson["serie1"]))
+                        //     self.serieAPI.append(serie)
+                        print("append done")
+                        
+                        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                        
+                        //Database save
+                        let DBseries=Series(context: context)
+                        DBseries.s1=Int16( self.serieAPI[0]!)
+                        DBseries.s2=Int16( self.serieAPI[1]!)
+                        DBseries.s3=Int16( self.serieAPI[2]!)
+                        DBseries.s4=Int16( self.serieAPI[3]!)
+                        DBseries.s5=Int16( self.serieAPI[4]!)
+                        DBseries.id=Int16(1)
+                        
+                        
+                        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                        
+                        DispatchQueue.main.async() {
+                            self.tableAPI.reloadData()
+                        }
+                        
+                        
+                    }
+                    catch{print("bug")}
+                    
+                }
+                
+            }
+        }
+        task.resume()
+        refreshControl.endRefreshing()
+                            }
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +82,10 @@ class ThirdViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableAPI.register(UITableViewCell.self, forCellReuseIdentifier: "cellAPI")
         tableAPI.delegate = self
         tableAPI.dataSource = self
-        
+        self.tableAPI.refreshControl = refreshControl
+
+        refreshControl.addTarget(self, action: #selector(fetchWeatherData), for: UIControlEvents.valueChanged)
+
         // Do any additional setup after loading the view.
         
         
