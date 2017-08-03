@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Training_Motion" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3131a51d5077aaae22d46d69eace1bfc" translatesAutoresizingMaskIntoConstraints="NO" id="OfX-GA-BaV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRACK TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egu-M6-DNL">
+                                <rect key="frame" x="0.0" y="50" width="375" height="32.5"/>
+                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.45000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjx-rW-cHB">
+                                <rect key="frame" x="-0.5" y="317" width="375" height="53"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <state key="normal" title="Start tracking">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTracking:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kga-y6-chb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Egu-M6-DNL" firstAttribute="width" secondItem="OfX-GA-BaV" secondAttribute="width" id="1gU-wV-Hvq"/>
+                            <constraint firstItem="kjx-rW-cHB" firstAttribute="width" secondItem="OfX-GA-BaV" secondAttribute="width" id="55t-b0-ZP7"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OfX-GA-BaV" secondAttribute="bottom" id="Cxg-Ay-eMQ"/>
+                            <constraint firstItem="Egu-M6-DNL" firstAttribute="centerX" secondItem="OfX-GA-BaV" secondAttribute="centerX" id="Dow-Ig-d50"/>
+                            <constraint firstItem="Egu-M6-DNL" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="GOt-Si-fah"/>
+                            <constraint firstItem="kjx-rW-cHB" firstAttribute="centerX" secondItem="OfX-GA-BaV" secondAttribute="centerX" id="IPw-Ns-mKr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OfX-GA-BaV" secondAttribute="bottom" id="It7-vB-gAN"/>
+                            <constraint firstAttribute="trailing" secondItem="OfX-GA-BaV" secondAttribute="trailing" id="PQS-5J-P7b"/>
+                            <constraint firstItem="kjx-rW-cHB" firstAttribute="centerY" secondItem="OfX-GA-BaV" secondAttribute="centerY" id="QRe-ee-Lyv"/>
+                            <constraint firstItem="OfX-GA-BaV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RaL-dQ-iFM"/>
+                            <constraint firstItem="OfX-GA-BaV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SV4-tr-h2L"/>
+                            <constraint firstItem="OfX-GA-BaV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gFu-3H-eHg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="3131a51d5077aaae22d46d69eace1bfc" width="500" height="750"/>
+    </resources>
+</document>

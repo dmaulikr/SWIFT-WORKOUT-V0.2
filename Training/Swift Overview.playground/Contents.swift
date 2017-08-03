@@ -6,6 +6,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -49,6 +50,34 @@ print(dico)
 print(dico[1]!)
 
 
+struct xyz
+    {
+        var x = Float()
+        var y = Float()
+        var z = Float()
+    }
+
+var data:[xyz] = []
+
+var gps = xyz()
+gps.x=1
+gps.y=1
+gps.z=1
+
+data.append(gps)
+
+
+gps.x=2
+gps.y=2
+gps.z=2
+
+data.append(gps)
+
+var data3 = ["x": [1,2,3],"y":[3,4,5],"z":[3,4,5]]
+data3["x"]?.append(4)
+let data2 =  try JSONSerialization.data(withJSONObject: data3, options:[])
+let decoded = try JSONSerialization.jsonObject(with: data2, options: [])
+print(decoded)
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 
