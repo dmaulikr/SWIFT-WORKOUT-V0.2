@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TemporyViewController.swift
 //  Training Motion
 //
 //  Created by Jeff on 03/08/2017.
@@ -10,28 +10,30 @@ import UIKit
 import CoreMotion
 import Foundation
 
-class ViewController: UIViewController {
+
+class TemporyViewController: UIViewController {
 
     
     let CM = CMMotionManager()
     var timer : Timer?
     var datamotion : [String:[Double]] = ["x":[0],"y":[0],"z":[0]]
+    private let refreshControl = UIRefreshControl()
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CM.accelerometerUpdateInterval=1/10
-
-
+        CM.deviceMotionUpdateInterval=1/6
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     
     
@@ -39,31 +41,52 @@ class ViewController: UIViewController {
         
         if(sender.title(for: .normal)! == "Start tracking"){
             sender.setTitle("Stop tracking", for: .normal)
-             datamotion  = ["x":[0],"y":[0],"z":[0]]
-            CM.startAccelerometerUpdates(to: OperationQueue.current! ){ (data, error) in
-                if let mydata = data
-                {
-                    let x = mydata.acceleration.x
-                    let y = mydata.acceleration.y
-                    let z = mydata.acceleration.z
-                    
-                    self.datamotion["x"]!.append(x)
-                    self.datamotion["y"]!.append(y)
-                    self.datamotion["z"]!.append(z)
-                }
-            }
+            func helloWorldTimer () {
+                timer = Timer.scheduledTimer(timeInterval: 1/120, target: self, selector: #selector(TemporyViewController.tracking), userInfo: nil, repeats: true)}
+            helloWorldTimer()
+            
+            
         }else{
             sender.setTitle("Start tracking", for: .normal)
-            CM.stopAccelerometerUpdates()
+            timer?.invalidate()
+            endTracking()
             SendData()
-            datamotion  = ["x":[0],"y":[0],"z":[0]]
-
+        }
+    }
+    
+    
+    func tracking()
+    {
+        
+        CM.startAccelerometerUpdates()
+        
+        if (CM.accelerometerData?.acceleration.x) != nil
+        {
+            let x = CM.accelerometerData?.acceleration.x
+            let y = CM.accelerometerData?.acceleration.y
+            let z = CM.accelerometerData?.acceleration.z
+            
+            datamotion["x"]!.append(x!)
+            datamotion["y"]!.append(y!)
+            datamotion["z"]!.append(z!)
+            
+            print(x!)
+        }else{
+            
         }
         
         
- 
-        }
-
+    }
+    
+    func endTracking()
+    {
+        
+        print(datamotion)
+        CM.stopAccelerometerUpdates()
+        
+        
+    }
+    
     func SendData() {
         
         
@@ -94,6 +117,7 @@ class ViewController: UIViewController {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             
+            print(request.httpBody)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if error != nil
                 {print(error)}
@@ -112,6 +136,7 @@ class ViewController: UIViewController {
                     
                 }}
             task.resume()
+            refreshControl.endRefreshing()
             //p/rint(myjson)
             
         }catch {
@@ -124,9 +149,6 @@ class ViewController: UIViewController {
         //request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         
     }
-    
-    
-    
+
 
 }
-
