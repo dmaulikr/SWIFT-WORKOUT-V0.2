@@ -16,13 +16,14 @@ class ViewController: UIViewController {
     let CM = CMMotionManager()
     var timer : Timer?
     var datamotion : [String:[Double]] = ["x":[0],"y":[0],"z":[0]]
+    var user = String()
     
-    
+    @IBOutlet weak var userText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         CM.accelerometerUpdateInterval=1/10
-
+        userText.text!=user
 
         // Do any additional setup after loading the view, typically from a nib.
     }

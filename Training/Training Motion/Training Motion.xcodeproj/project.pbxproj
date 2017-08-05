@@ -14,6 +14,7 @@
 		1F1353F91F33305600E016B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F1353F81F33305600E016B6 /* Assets.xcassets */; };
 		1F1353FC1F33305600E016B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F1353FA1F33305600E016B6 /* LaunchScreen.storyboard */; };
 		1FF8F0261F33CA5A00A8EA77 /* TemporyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF8F0251F33CA5A00A8EA77 /* TemporyViewController.swift */; };
+		1FF8F02A1F35FBE500A8EA77 /* ViewController_Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF8F0291F35FBE500A8EA77 /* ViewController_Login.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1F1353FB1F33305600E016B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F1353FD1F33305600E016B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FF8F0251F33CA5A00A8EA77 /* TemporyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporyViewController.swift; sourceTree = "<group>"; };
+		1FF8F0291F35FBE500A8EA77 /* ViewController_Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController_Login.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				1F1353EE1F33305600E016B6 /* AppDelegate.swift */,
 				1F1353F01F33305600E016B6 /* ViewController.swift */,
+				1FF8F0291F35FBE500A8EA77 /* ViewController_Login.swift */,
 				1FF8F0251F33CA5A00A8EA77 /* TemporyViewController.swift */,
 				1F1353F21F33305600E016B6 /* Main.storyboard */,
 				1F1353F81F33305600E016B6 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 			files = (
 				1F1353F71F33305600E016B6 /* Training_Motion.xcdatamodeld in Sources */,
 				1FF8F0261F33CA5A00A8EA77 /* TemporyViewController.swift in Sources */,
+				1FF8F02A1F35FBE500A8EA77 /* ViewController_Login.swift in Sources */,
 				1F1353F11F33305600E016B6 /* ViewController.swift in Sources */,
 				1F1353EF1F33305600E016B6 /* AppDelegate.swift in Sources */,
 			);
