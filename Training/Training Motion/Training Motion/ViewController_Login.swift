@@ -8,9 +8,19 @@
 
 import UIKit
 
-class ViewController_Login: UIViewController {
+class ViewController_Login: UIViewController ,UITextFieldDelegate{
 
     @IBOutlet weak var userEmail: UITextField!
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
+      textField.returnKeyType = UIReturnKeyType.done
+        textField.resignFirstResponder()  //if desired
+       //   self.view.endEditing(true)
+        return true
+    }
+    
+    
     @IBAction func connect(_ sender: UIButton) {
         
         performSegue(withIdentifier: "segueLogin", sender: self)
@@ -31,9 +41,12 @@ class ViewController_Login: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
 
-      
+       super.viewDidLoad()
+        
+        userEmail.delegate = self
+
+    
         
 }
 

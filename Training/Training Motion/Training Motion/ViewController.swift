@@ -15,14 +15,14 @@ class ViewController: UIViewController {
     
     let CM = CMMotionManager()
     var timer : Timer?
-    var datamotion : [String:[Double]] = ["x":[0],"y":[0],"z":[0]]
     var user = String()
+    var datamotion : [String:[Any]] = ["x":[0],"y":[0],"z":[0]]
     
     @IBOutlet weak var userText: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CM.accelerometerUpdateInterval=1/10
+        CM.accelerometerUpdateInterval=1/3
         userText.text!=user
 
         // Do any additional setup after loading the view, typically from a nib.
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         
         if(sender.title(for: .normal)! == "Start tracking"){
             sender.setTitle("Stop tracking", for: .normal)
-             datamotion  = ["x":[0],"y":[0],"z":[0]]
+            datamotion  = ["x":[0],"y":[0],"z":[0],"user":[user]]
             CM.startAccelerometerUpdates(to: OperationQueue.current! ){ (data, error) in
                 if let mydata = data
                 {
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
             sender.setTitle("Start tracking", for: .normal)
             CM.stopAccelerometerUpdates()
             SendData()
-            datamotion  = ["x":[0],"y":[0],"z":[0]]
+            datamotion  = ["x":[0],"y":[0],"z":[0],"user":[user]]
 
         }
         
@@ -69,22 +69,16 @@ class ViewController: UIViewController {
         
         
         do {
-            let url = URL(string: "http://137.74.168.147/json")
+            let url = URL(string: "http://137.74.168.147:5000/try")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             
             
-            //            let datamotion2=["username":"jeff", "password":"qin"]
-            
-            
             let myjson = try! JSONSerialization.data(withJSONObject: datamotion, options: .prettyPrinted)
-            let valid = JSONSerialization.isValidJSONObject(myjson)
-            print(valid)
+            
             
             let decoded = try JSONSerialization.jsonObject(with: myjson, options: [])
-            // here "decoded" is of type `Any`, decoded from JSON data
             
-            // you can now cast it with the right type
             if let dictFromJSON = decoded as? [String:String] {
                 
                 print(dictFromJSON)
@@ -97,7 +91,9 @@ class ViewController: UIViewController {
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if error != nil
-                {print(error)}
+                {
+                    print(error!)
+                }
                 else{
                     if let content = data {
                         do {
@@ -112,8 +108,8 @@ class ViewController: UIViewController {
                     }
                     
                 }}
+            
             task.resume()
-            //p/rint(myjson)
             
         }catch {
             print("error from json")
